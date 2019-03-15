@@ -23,68 +23,68 @@ function get_currencyByCode($currencyCode) {
     return $currency;
 }
 
-function delete_product($productCode) {
+function delete_currency($currencyCode) {
     global $db;
-    $query = 'DELETE FROM financial_products
-              WHERE product_code = :productCode';
-    $statement = $db->prepare($query);
-    $statement->bindValue(':productCode', $productCode);
-    $statement->execute();
-    $statement->closeCursor();
+    $query = 'DELETE FROM currency_products
+              WHERE currency_code = :currencyCode';
+    $stmt = $db->prepare($query);
+    $stmt->bindValue(':currencyCode', $currencyCode);
+    $stmt->execute();
+    $stmt->closeCursor();
 }
 
-function add_product($productName, $productDescription, $productPrice) {
+function add_currency($currencyName, $currencyDescription, $currencyPrice) {
     global $db;
-    $query = 'INSERT INTO financial_products
-                 (product_name, product_description, product_price)
+    $query = 'INSERT INTO currency_products
+                 (currency_name, currency_description, currency_price)
               VALUES
-                 (:productName, :productDescription, :productPrice)';
-    $statement = $db->prepare($query);
-    $statement->bindValue(':productName', $productName);
-    $statement->bindValue(':productDescription', $productDescription);
-    $statement->bindValue(':productPrice', $productPrice);
-    $statement->execute();
-    $statement->closeCursor();
+                 (:currencyName, :currencyDescription, :currencyPrice)';
+    $stmt = $db->prepare($query);
+    $stmt->bindValue(':currencyName', $currencyName);
+    $stmt->bindValue(':currencyDescription', $currencyDescription);
+    $stmt->bindValue(':currencyPrice', $currencyPrice);
+    $stmt->execute();
+    $stmt->closeCursor();
 }
 
-function update_product($productCode, $productName, $productDescription, $productPrice) {
+function update_currency($currencyCode, $currencyName, $currencyDescription, $currencyPrice) {
     global $db;
-    $query = 'UPDATE financial_products
-              SET product_name = :productName,
-              product_description = :productDescription,
-              product_price = :productPrice
-              WHERE product_code = :productCode';
-    $statement = $db->prepare($query);
-    $statement->bindValue(':productName', $productName);
-    $statement->bindValue(':productDescription', $productDescription);
-    $statement->bindValue(':productPrice', $productPrice);
-    $statement->bindValue(':productCode', $productCode);
-    $statement->execute();
-    $statement->closeCursor();
+    $query = 'UPDATE currency_products
+              SET currency_name = :currencyName,
+              currency_description = :currencyDescription,
+              currency_price = :currencyPrice
+              WHERE currency_code = :currencyCode';
+    $stmt = $db->prepare($query);
+    $stmt->bindValue(':currencyName', $currencyName);
+    $stmt->bindValue(':currencyDescription', $currencyDescription);
+    $stmt->bindValue(':currencyPrice', $currencyPrice);
+    $stmt->bindValue(':currencyCode', $currencyCode);
+    $stmt->execute();
+    $stmt->closeCursor();
 }
 
-function get_product_name($productCode) {
+function get_currency_name($currencyCode) {
     global $db;
-    $query = 'SELECT product_name FROM financial_products
-              WHERE product_code = :productCode';
-    $statement = $db->prepare($query);
-    $statement->bindValue(':productCode', $productCode);
-    $statement->execute();
-    $productName = $statement->fetch()[0];
-    $statement->closeCursor();
-    return $productName;
+    $query = 'SELECT currency_name FROM currency_products
+              WHERE currency_code = :currencyCode';
+    $stmt = $db->prepare($query);
+    $stmt->bindValue(':currencyCode', $currencyCode);
+    $stmt->execute();
+    $currencyName = $stmt->fetch()[0];
+    $stmt->closeCursor();
+    return $currencyName;
 }
 
-function get_product_price($productCode) {
+function get_currency_price($currencyCode) {
     global $db;
-    $query = 'SELECT product_price FROM financial_products
-              WHERE product_code = :productCode';
-    $statement = $db->prepare($query);
-    $statement->bindValue(':productCode', $productCode);
-    $statement->execute();
-    $productPrice = $statement->fetch()[0];
-    $statement->closeCursor();
-    return $productPrice;
+    $query = 'SELECT currency_price FROM currency_products
+              WHERE currency_code = :currencyCode';
+    $stmt = $db->prepare($query);
+    $stmt->bindValue(':currencyCode', $currencyCode);
+    $stmt->execute();
+    $currencyPrice = $stmt->fetch()[0];
+    $stmt->closeCursor();
+    return $currencyPrice;
 }
 
 ?>
