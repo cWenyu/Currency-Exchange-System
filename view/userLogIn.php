@@ -34,7 +34,7 @@ if (isset($_SESSION['user_session']) != "") {
 
     </form>
     <p>
-        <a href="../index.php?action=list_products">List Products</a>
+        <a href="../index.php?action=list_currencies">List Currencies</a>
     </p>
 </main>
 <?php include '../include/footer.php'; ?>

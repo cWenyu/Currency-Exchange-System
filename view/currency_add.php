@@ -23,7 +23,7 @@
         <br>
     </form>
     <p>
-        <a href="index.php?action=list_products">View Currency List</a>
+        <a href="index.php?action=list_currencies">View Currency List</a>
     </p>
 
 </main>

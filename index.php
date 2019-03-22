@@ -1,7 +1,7 @@
 <?php
 
 require('model/database.php');
-require('model/product_db.php');
+require('model/currency_db.php');
 require ('model/user_db.php');
 
 
@@ -9,13 +9,13 @@ $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
     $action = filter_input(INPUT_GET, 'action');
     if ($action == NULL) {
-        $action = 'list_products';
+        $action = 'list_currencies';
     }
 }
 //list financial products
-if ($action == 'list_products') {
+if ($action == 'list_currencies') {
     $products = get_products();
-    include('view/product_list.php');
+    include('view/currency_list.php');
 }
 //edit product && update product
 else if ($action == 'edit_product') {

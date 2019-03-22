@@ -21,6 +21,6 @@
         <input type="submit" value="Confirm">
         <br>
     </form>
-    <p><a href="index.php?action=list_products">List Products</a></p> 
+    <p><a href="index.php?action=list_currencies">List Currencies</a></p> 
 </main>
 <?php include './include/footer.php'; ?>
