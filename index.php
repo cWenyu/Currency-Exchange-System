@@ -15,7 +15,7 @@ if ($action == NULL) {
 //list financial products
 if ($action == 'list_currencies') {
     $currencies = get_currencies();
-    include('view/currency_list.php');
+    include('view/index_view/currency_list.php');
 }
 //edit product && update product
 else if ($action == 'edit_currency') {
@@ -74,7 +74,7 @@ else if ($action == "delete_currency") {
 }
 //add product
 else if ($action == 'add_currency_form') {
-    include('view/currency_add.php');
+    include('view/index_view/currency_add.php');
 } else if ($action == 'add_currency') {
     $currencyName = filter_input(INPUT_POST, 'currencyName');
     $currencyDescription = filter_input(INPUT_POST, 'currencyDescription');
@@ -98,7 +98,7 @@ else if ($action == 'add_currency_form') {
 }
 //new register 
 else if ($action == "register_new_form") {
-    include ("view/user_add.php");
+    include ("view/index_view/user_add.php");
 } else if ($action == "register_new") {
     $cardNumber = filter_input(INPUT_POST, 'cardNumber');
     $cardHolder = filter_input(INPUT_POST, 'cardHolder');
@@ -147,7 +147,7 @@ else if ($action == "user_cancellation_form") {
 //buy product
 else if ($action == "buy_currency_form") {
     $currencies = get_currencies();
-    include ("view/user_buy_currency.php");
+    include ("view/index_view/user_buy_currency.php");
 } else if ($action == "buy_currency") {
     $registerNumber = filter_input(INPUT_POST, 'registerNumber');
     $registerPassword = filter_input(INPUT_POST, 'registerPassword');

@@ -1,10 +1,10 @@
 <?php
-session_start();
+//session_start();
 if (isset($_SESSION['user_session']) != "") {
     header("Location: ./view/user_home.php");
 }
 ?>
-<?php include '../include/header.php'; ?>
+<?php include '../../include/header.php'; ?>
 <main>
     <h2>User Login</h2> 
 
@@ -37,7 +37,7 @@ if (isset($_SESSION['user_session']) != "") {
         <a href="../index.php?action=list_currencies">List Currencies</a>
     </p>
 </main>
-<?php include '../include/footer.php'; ?>
+<?php include '../../include/footer.php'; ?>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://use.fontawesome.com/ee309940e2.js"></script>
