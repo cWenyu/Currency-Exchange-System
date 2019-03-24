@@ -20,7 +20,7 @@ if (isset($_SESSION['user_session']) != "") {
         </div>
 
         <div>
-            <input type="password" placeholder="Register Password" name="password" id="register_password" pattern="^[0-9]{5}$" required autofocus />
+            <input type="password" placeholder="Register Password" name="password" id="register_password" pattern="^([a-zA-Z0-9!%^&*_@#~]){8,16}$" required autofocus />
         </div>
 
         <hr />

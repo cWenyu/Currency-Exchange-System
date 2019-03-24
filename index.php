@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require('model/database.php');
 require('model/currency_db.php');
 require ('model/user_db.php');
@@ -117,10 +117,12 @@ else if ($action == "register_new_form") {
         $error = "Invalid balance.";
         include('errors/error.php');
     } else {
-        new_register_user($registerPassword, $cardNumber, $cardHolder, $balance);
+        $new_pw = sha1($registerPassword);
+        new_register_user($new_pw, $cardNumber, $cardHolder, $balance);
 
-        $newRegisterNumber = register_number($registerPassword, $cardNumber, $cardHolder, $balance);
+        $newRegisterNumber = register_number($new_pw, $cardNumber, $cardHolder, $balance);
         $message = "Your register number is " . $newRegisterNumber;
+        
         include('include/messages.php');
     }
 }
@@ -144,7 +146,7 @@ else if ($action == "user_cancellation_form") {
 }
 //buy product
 else if ($action == "buy_currency_form") {
-    $products = get_currencies();
+    $currencies = get_currencies();
     include ("view/user_buy_currency.php");
 } else if ($action == "buy_currency") {
     $registerNumber = filter_input(INPUT_POST, 'registerNumber');

@@ -1,6 +1,6 @@
 <?php include './include/header.php'; ?>
 <main>
-    <h2>Register</h2>
+    <h2>Buy Currency</h2>
     <form action="index.php" method="post" id="buy_currency_form">
         <input type="hidden" name="action" value="buy_currency">
 
@@ -13,7 +13,7 @@
         <input type="password" name="registerPassword" pattern="^[0-9]{5}$" required autofocus>
         <br>
 
-        <label>Products:</label>
+        <label>Currencies:</label>
         <select name="currencyCode">
             <?php foreach ($currencies as $currency) : ?>
                 <option value="<?php echo $curency['currency_code']; ?>">

@@ -35,7 +35,7 @@
         </table>
         <p><a href="?action=list_currencies">List Currencies</a></p>
         <p><a href="?action=add_currency_form">Add Currency</a></p>
-        <p><a href="view/userLogIn.php">Quick Check Balance</a></p>
+        <p><a href="view/userLogIn.php">Login</a></p>
         <p><a href="?action=buy_currency_form">Buy Currency</a></p>
         <p><a href="?action=register_new_form">Register</a></p>
         <p><a href="?action=user_cancellation_form">Account Cancellation</a></p>

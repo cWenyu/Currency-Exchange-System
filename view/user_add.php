@@ -14,7 +14,7 @@
         <br>
 
         <label>Register Password:</label>
-        <input type="password" name="registerPassword" pattern="^[0-9]{5}$" required autofocus>
+        <input type="password" name="registerPassword" pattern="^([a-zA-Z0-9!%^&*_@#~]){8,16}$" required autofocus>
         <br>
 
         <label>Deposit:</label>
