@@ -14,85 +14,85 @@ if ($action == NULL) {
 }
 //list financial products
 if ($action == 'list_currencies') {
-    $products = get_products();
+    $currencies = get_currencies();
     include('view/currency_list.php');
 }
 //edit product && update product
-else if ($action == 'edit_product') {
-    $productCode = filter_input(INPUT_POST, 'productCode', FILTER_VALIDATE_INT);
-    if ($productCode == NULL) {
-        $error = "Missing product code.";
+else if ($action == 'edit_currency') {
+    $currencyCode = filter_input(INPUT_POST, 'currencyCode', FILTER_VALIDATE_INT);
+    if ($currencyCode == NULL) {
+        $error = "Missing currency code.";
         include('errors/error.php');
-    } else if ($productCode == FALSE) {
-        $error = "Incorrect product code.";
+    } else if ($currenncyCode == FALSE) {
+        $error = "Incorrect currency code.";
         include('errors/error.php');
     } else {
-        $product = get_productByCode($productCode);
-        include('view/product_edit.php');
+        $currency = get_currencyByCode($currencyCode);
+        include('view/currency_edit.php');
     }
-} else if ($action == 'update_product') {
-    $productCode = filter_input(INPUT_POST, 'productCode', FILTER_VALIDATE_INT);
-    $productName = filter_input(INPUT_POST, 'productName');
-    $productDescription = filter_input(INPUT_POST, 'productDescription');
-    $productPrice = filter_input(INPUT_POST, 'productPrice', FILTER_VALIDATE_FLOAT);
-    if ($productCode == NULL) {
-        $error = "Missing product code.";
+} else if ($action == 'update_currency') {
+    $currencyCode = filter_input(INPUT_POST, 'currencyCode', FILTER_VALIDATE_INT);
+    $currencyName = filter_input(INPUT_POST, 'currencyName');
+    $currencyDescription = filter_input(INPUT_POST, 'currencyDescription');
+    $currencyPrice = filter_input(INPUT_POST, 'currencyPrice', FILTER_VALIDATE_FLOAT);
+    if ($currencyCode == NULL) {
+        $error = "Missing currency code.";
         include('errors/error.php');
-    } else if ($productCode == FALSE) {
-        $error = "Incorrect product code.";
+    } else if ($currencyCode == FALSE) {
+        $error = "Incorrect currency code.";
         include('errors/error.php');
-    } else if ($productName == NULL) {
-        $error = "Product name is null.";
+    } else if ($currencyName == NULL) {
+        $error = "Currency name is null.";
         include('errors/error.php');
-    } else if ($productDescription == null) {
-        $error = "Product description is null.";
+    } else if ($currencyDescription == null) {
+        $error = "Currency description is null.";
         include('errors/error.php');
-    } else if ($productPrice == NULL) {
-        $error = "Product price is null.";
+    } else if ($currencyPrice == NULL) {
+        $error = "Currency price is null.";
         include('errors/error.php');
-    } else if ($productPrice == FALSE) {
+    } else if ($currencyPrice == FALSE) {
         $error = "Invalid price.";
         include('errors/error.php');
     } else {
-        update_product($productCode, $productName, $productDescription, $productPrice);
+        update_currency($currencyCode, $currencyName, $currencyDescription, $currencyPrice);
         header("Location: index.php");
     }
 }
 //delete product
-else if ($action == "delete_product") {
-    $productCode = filter_input(INPUT_POST, 'productCode', FILTER_VALIDATE_INT);
-    if ($productCode == NULL) {
-        $error = "Missing product code.";
+else if ($action == "delete_currency") {
+    $currencyCode = filter_input(INPUT_POST, 'currencyCode', FILTER_VALIDATE_INT);
+    if ($currencyCode == NULL) {
+        $error = "Missing currency code.";
         include('errors/error.php');
-    } else if ($productCode == FALSE) {
-        $error = "Incorrect product code.";
+    } else if ($currencyCode == FALSE) {
+        $error = "Incorrect currency code.";
         include('errors/error.php');
     } else {
-        delete_product($productCode);
+        delete_currency($currencyCode);
         header("Location: index.php");
     }
 }
 //add product
-else if ($action == 'add_product_form') {
-    include('view/product_add.php');
-} else if ($action == 'add_product') {
-    $productName = filter_input(INPUT_POST, 'productName');
-    $productDescription = filter_input(INPUT_POST, 'productDescription');
-    $productPrice = filter_input(INPUT_POST, 'productPrice', FILTER_VALIDATE_FLOAT);
-    if ($productName == NULL) {
-        $error = "Product name is null.";
+else if ($action == 'add_currency_form') {
+    include('view/currency_add.php');
+} else if ($action == 'add_currency') {
+    $currencyName = filter_input(INPUT_POST, 'currencyName');
+    $currencyDescription = filter_input(INPUT_POST, 'currencyDescription');
+    $currencyPrice = filter_input(INPUT_POST, 'currencyPrice', FILTER_VALIDATE_FLOAT);
+    if ($currencyName == NULL) {
+        $error = "Currency name is null.";
         include('errors/error.php');
-    } else if ($productDescription == null) {
-        $error = "Product description is null.";
+    } else if ($currencyDescription == null) {
+        $error = "Currency description is null.";
         include('errors/error.php');
-    } else if ($productPrice == NULL) {
-        $error = "Product price is null.";
+    } else if ($currencyPrice == NULL) {
+        $error = "Currency price is null.";
         include('errors/error.php');
-    } else if ($productPrice == FALSE) {
+    } else if ($currencyPrice == FALSE) {
         $error = "Invalid price.";
         include('errors/error.php');
     } else {
-        add_product($productName, $productDescription, $productPrice);
+        add_currency($currencyName, $currencyDescription, $currencyPrice);
         header("Location: index.php");
     }
 }
@@ -143,25 +143,25 @@ else if ($action == "user_cancellation_form") {
     }
 }
 //buy product
-else if ($action == "buy_product_form") {
-    $products = get_products();
-    include ("view/user_buy_product.php");
-} else if ($action == "buy_product") {
+else if ($action == "buy_currency_form") {
+    $products = get_currencies();
+    include ("view/user_buy_currency.php");
+} else if ($action == "buy_currency") {
     $registerNumber = filter_input(INPUT_POST, 'registerNumber');
     $registerPassword = filter_input(INPUT_POST, 'registerPassword');
     $cardHolder = get_card_holder($registerNumber, $registerPassword);
-    $productCode = filter_input(INPUT_POST, 'productCode');
-    $productName = get_product_name($productCode);
+    $currencyCode = filter_input(INPUT_POST, 'currencyCode');
+    $currencyName = get_currency_name($currencyCode);
     $quantity = filter_input(INPUT_POST, 'quantity');
-    $singlePrice = get_product_price($productCode);
+    $singlePrice = get_currency_price($currencyCode);
     $cost = $singlePrice * $quantity;
     if ($quantity == NULL) {
         $error = "Quantity shold be 1 at least.";
         include('errors/error.php');
     } else {
-        buy_product($registerNumber, $cardHolder, $productCode, $productName, $quantity);
-        buy_product_change_balance($registerNumber, $cost);
-        $userProducts = user_production($registerNumber);
+        buy_currency($registerNumber, $cardHolder, $currencyCode, $currencyName, $quantity);
+        buy_currency_change_balance($registerNumber, $cost);
+        $userCurrencies = user_production($registerNumber);
         include 'view/user_production.php';
     }
 }
