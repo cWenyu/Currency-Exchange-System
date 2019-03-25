@@ -4,7 +4,6 @@ require('model/database.php');
 require('model/currency_db.php');
 require ('model/user_db.php');
 
-
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
     $action = filter_input(INPUT_GET, 'action');
@@ -23,12 +22,12 @@ else if ($action == 'edit_currency') {
     if ($currencyCode == NULL) {
         $error = "Missing currency code.";
         include('errors/error.php');
-    } else if ($currenncyCode == FALSE) {
+    } else if ($currencyCode == FALSE) {
         $error = "Incorrect currency code.";
         include('errors/error.php');
     } else {
         $currency = get_currencyByCode($currencyCode);
-        include('view/currency_edit.php');
+        include('view/index_view/currency_edit.php');
     }
 } else if ($action == 'update_currency') {
     $currencyCode = filter_input(INPUT_POST, 'currencyCode', FILTER_VALIDATE_INT);
@@ -128,7 +127,7 @@ else if ($action == "register_new_form") {
 }
 //user account cancellation
 else if ($action == "user_cancellation_form") {
-    include ("view/user_cancellation.php");
+    include ("view/index_view/user_cancellation.php");
 } else if ($action == "account_cancellation") {
     $registerNumber = filter_input(INPUT_POST, 'registerNumber');
     $registerPassword = filter_input(INPUT_POST, 'registerPassword');
@@ -144,27 +143,5 @@ else if ($action == "user_cancellation_form") {
         include('include/messages.php');
     }
 }
-//buy product
-else if ($action == "buy_currency_form") {
-    $currencies = get_currencies();
-    include ("view/index_view/user_buy_currency.php");
-} else if ($action == "buy_currency") {
-    $registerNumber = filter_input(INPUT_POST, 'registerNumber');
-    $registerPassword = filter_input(INPUT_POST, 'registerPassword');
-    $cardHolder = get_card_holder($registerNumber, $registerPassword);
-    $currencyCode = filter_input(INPUT_POST, 'currencyCode');
-    $currencyName = get_currency_name($currencyCode);
-    $quantity = filter_input(INPUT_POST, 'quantity');
-    $singlePrice = get_currency_price($currencyCode);
-    $cost = $singlePrice * $quantity;
-    if ($quantity == NULL) {
-        $error = "Quantity shold be 1 at least.";
-        include('errors/error.php');
-    } else {
-        buy_currency($registerNumber, $cardHolder, $currencyCode, $currencyName, $quantity);
-        buy_currency_change_balance($registerNumber, $cost);
-        $userCurrencies = user_production($registerNumber);
-        include 'view/user_production.php';
-    }
-}
+
 ?>

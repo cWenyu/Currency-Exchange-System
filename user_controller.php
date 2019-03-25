@@ -15,12 +15,12 @@ if ($action == NULL) {
 //list financial products
 if ($action == 'list_user_currencies') {
     $currencies = get_currencies();
-    include('view/currency_list.php');
+    include('view/user_view/currency_list.php');
 }
 
 //user account cancellation
 else if ($action == "user_cancellation_form") {
-    include ("view/user_cancellation.php");
+    include ("view/user_view/user_cancellation.php");
 } else if ($action == "account_cancellation") {
     $registerNumber = filter_input(INPUT_POST, 'registerNumber');
     $registerPassword = filter_input(INPUT_POST, 'registerPassword');
@@ -39,7 +39,7 @@ else if ($action == "user_cancellation_form") {
 //buy product
 else if ($action == "user_buy_currency_form") {
     $currencies = get_currencies();
-    include ("view/user_buy_currency.php");
+    include ("view/user_view/user_buy_currency.php");
 } else if ($action == "buy_currency") {
     $registerNumber = filter_input(INPUT_POST, 'registerNumber');
     $registerPassword = filter_input(INPUT_POST, 'registerPassword');
@@ -56,7 +56,7 @@ else if ($action == "user_buy_currency_form") {
         buy_currency($registerNumber, $cardHolder, $currencyCode, $currencyName, $quantity);
         buy_currency_change_balance($registerNumber, $cost);
         $userCurrencies = user_production($registerNumber);
-        include 'view/user_production.php';
+        include 'view/user_view/user_production.php';
     }
 }
 ?>

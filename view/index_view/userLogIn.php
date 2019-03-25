@@ -8,7 +8,7 @@ if (isset($_SESSION['user_session']) != "") {
 <main>
     <h2>User Login</h2> 
 
-    <form method="post" id="login-form">
+    <form method="post" action="login_process.php" id="login-form">
 
         <div id="error">
             <!-- error will be shown here ! -->
@@ -34,7 +34,7 @@ if (isset($_SESSION['user_session']) != "") {
 
     </form>
     <p>
-        <a href="../index.php?action=list_currencies">List Currencies</a>
+        <a href="../../user_controller.php?action=list_user_currencies">List Currencies</a>
     </p>
 </main>
 <?php include '../../include/footer.php'; ?>

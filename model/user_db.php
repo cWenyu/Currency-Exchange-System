@@ -59,23 +59,23 @@ function get_card_holder($registerNumber, $registerPassword) {
     return $userNameA;
 }
 
-function buy_product($registerNumber, $cardHolder, $productCode, $productName, $quantity) {
+function buy_currency($registerNumber, $cardHolder, $currencyCode, $currencyName, $quantity) {
     global $db;
     $query = 'INSERT INTO users_production
-                 (register_number,card_holder,product_code,product_name,quantity)
+                 (register_number,card_holder,currency_code,currency_name,quantity)
               VALUES
-                 (:registerNumber,:cardHolder,:productCode,:productName,:quantity)';
+                 (:registerNumber,:cardHolder,:currencyCode,:currencyName,:quantity)';
     $statement = $db->prepare($query);
     $statement->bindValue(':registerNumber', $registerNumber);
     $statement->bindValue(':cardHolder', $cardHolder);
-    $statement->bindValue(':productCode', $productCode);
-    $statement->bindValue(':productName', $productName);
+    $statement->bindValue(':currencyCode', $currencyCode);
+    $statement->bindValue(':currencyName', $currencyName);
     $statement->bindValue(':quantity', $quantity);
     $statement->execute();
     $statement->closeCursor();
 }
 
-function buy_product_change_balance($registerNumber, $cost) {
+function buy_currency_change_balance($registerNumber, $cost) {
     global $db;
     $query = 'UPDATE users_accounts
               SET balance = (balance - :cost)

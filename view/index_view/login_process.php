@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../model/database.php';
+require_once '../../model/database.php';
 if (isset($_POST['btn-login'])) {
     $register_number = trim($_POST['register_number']);
     $register_password = trim($_POST['password']);
@@ -18,12 +18,16 @@ if (isset($_POST['btn-login'])) {
 
             echo "ok"; // log in
             $_SESSION['user_session'] = $row['register_number'];
+            header("Location: ../user_view/home.php");
         } else {
             
-            echo "register number or password does not exist."; // wrong details 
+            echo "register number or password does not exist."; // wrong details
+            header("Location: ../../index.php");
         }
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
+    
+    
 }
 ?>
