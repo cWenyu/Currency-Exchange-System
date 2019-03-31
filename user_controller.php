@@ -15,13 +15,13 @@ if ($action == NULL) {
 //list financial products
 if ($action == 'list_user_currencies') {
     $currencies = get_currencies();
-    include('view/user_view/currency_list.php');
+    include('view/user_view/home.php');
 }
 
 //user account cancellation
 else if ($action == "user_cancellation_form") {
     include ("view/user_view/user_cancellation.php");
-} else if ($action == "account_cancellation") {
+} else if ($action == "user_account_cancellation") {
     $registerNumber = filter_input(INPUT_POST, 'registerNumber');
     $registerPassword = filter_input(INPUT_POST, 'registerPassword');
     if ($registerNumber == NULL) {

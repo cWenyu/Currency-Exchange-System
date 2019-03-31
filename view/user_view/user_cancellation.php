@@ -4,8 +4,8 @@
     <h3>
         Please enter your information to make sure your operation.
     </h3>
-    <form action="index.php" method="post" id="user_cancellation_form">
-        <input type="hidden" name="action" value="account_cancellation">
+    <form action="user_controller.php" method="post" id="user_cancellation_form">
+        <input type="hidden" name="action" value="user_account_cancellation">
 
         <!-- next step: regex for each input-->
         <label>Register Number:</label>
@@ -13,7 +13,7 @@
         <br>
 
         <label>Register Password:</label>
-        <input type="password" name="registerPassword" pattern="^[0-9]{5}$" required autofocus>
+        <input type="password" name="registerPassword" pattern="^([a-zA-Z0-9!%^&*_@#~]){8,16}$" required autofocus>
         <br>
 
         <hr/>
@@ -21,6 +21,6 @@
         <input type="submit" value="Confirm">
         <br>
     </form>
-    <p><a href="index.php?action=list_currencies">List Currencies</a></p> 
+    <p><a href="user_controller.php?action=list_user_currencies">List Currencies</a></p> 
 </main>
 <?php include './include/footer.php'; ?>
