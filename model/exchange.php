@@ -1,18 +1,7 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of exchange
- *
- * @author Rob
- */
 class exchange {
-    //put your code here
+
     
     public $cache_folder=null;
     protected $cache_file="cached_rates.xml"; //file holds chached rates
@@ -42,8 +31,8 @@ class exchange {
         
         //$this->fetch_exchange_rates();
         $this->exchrate["EUR"] = 1;
-        $this->exchrate["GBP"] = 1.3;
-        $this->exchrate["USD"] = 0.8;
+        $this->exchrate["USD"] = 1.3;
+        $this->exchrate["GBP"] = 0.8;
         $this->exchrate["CAD"] = 20;
         $this->exchrate["CNY"] = 0.01;
         $this->exchrate["HKD"] = 0.05;
@@ -70,18 +59,16 @@ class exchange {
             $new_rates = file($this->exchange_source_url);
             $trace = "XML GET FROM SERVER";
             
-            if(is_writable($cache)) {
+            if(is_writable($cache)){
                 $file_handler = fopen($cache, "w+");
                 
                 foreach ($new_rates as $line){
                     fputs($file_handler, $line);
                 }
-            }
-            else {
+            }else{
                 die ("File is not WRITEABLE - check folder permissions");
             }
-        }
-        else {
+        }else{
             $new_rates = file($cache);
             $trace = "CACHED DATA - ".$interval." seconds old.";
         }
@@ -104,15 +91,12 @@ class exchange {
             if($this->exchrate[$to] == 0 || $this->exchrate[$from] == 0 ) {
                 echo "Error: Unable to retrieve exchange rates";
                 $value = 0;
-            }
-            else {
+            }else{
                 $value = $amount * (1 / $this->exchrate[$from]) / $this->exchrate[$to];
             }
-        }
-        else {
+        }else{
             $value = $amount * $this->exchrate[$to] / $this->exchrate[$from];
         }
-        
         return $value;
     }
     
