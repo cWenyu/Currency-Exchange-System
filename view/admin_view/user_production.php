@@ -1,23 +1,23 @@
 <?php include './include/header.php'; ?>
 <main>
 
-    <h2><?php echo$cardHolder ?>'s Product List</h2>
+    <h2><?php echo$cardHolder ?>'s Currency List</h2>
     <section>
         <table>
             <tr>
-                <th>Product Name</th>
+                <th>Currency Name</th>
                 <th>Quantity</th>
                 <th>&nbsp;</th>
                 <th>&nbsp;</th>
             </tr>
-            <?php foreach ($userProducts as $userProduct) : ?>
+            <?php foreach ($userCurrencies as $userCurrency) : ?>
                 <tr>
-                    <td><?php echo $userProduct['product_name']; ?></td>    
-                    <td><?php echo $userProduct['quantity']; ?></td>
+                    <td><?php echo $userCurrency['currency_name']; ?></td>    
+                    <td><?php echo $userCurrency['quantity']; ?></td>
                 </tr>
             <?php endforeach; ?>
         </table>
-        <p><a href="?action=list_products">List Products</a></p>
+        <p><a href="?action=list_currencies">List Currencies</a></p>
     </section>
 </section>
 

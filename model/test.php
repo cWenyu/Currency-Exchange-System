@@ -2,13 +2,14 @@
 
 
 require('database.php');
-require('product_db.php');
+require('currency_db.php');
 require ('user_db.php');
 
 
-$result = get_product_price(2);
+$result = get_currency_name(2);
 
 print_r($result);
+
 
 /* 
  * To change this license header, choose License Headers in Project Properties.

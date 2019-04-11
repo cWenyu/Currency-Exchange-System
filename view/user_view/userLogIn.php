@@ -1,10 +1,10 @@
 <?php
 session_start();
 if (isset($_SESSION['user_session']) != "") {
-    header("Location: ./view/user_home.php");
+    header("Location: user_currency_list.php");
 }
 ?>
-<?php include '../include/header.php'; ?>
+<?php include '../../include/header.php'; ?>
 <main>
     <h2>User Login</h2> 
 
@@ -20,7 +20,7 @@ if (isset($_SESSION['user_session']) != "") {
         </div>
 
         <div>
-            <input type="password" placeholder="Register Password" name="password" id="register_password" pattern="^[0-9]{5}$" required autofocus />
+            <input type="password" placeholder="Register Password" name="password" id="register_password" pattern="^([a-zA-Z0-9!%^&*_@#~]){8,16}$" required autofocus />
         </div>
 
         <hr />
@@ -34,10 +34,10 @@ if (isset($_SESSION['user_session']) != "") {
 
     </form>
     <p>
-        <a href="../index.php?action=list_products">List Products</a>
+        <a href="../../index.php?action=list_currencies">Home Page</a>
     </p>
 </main>
-<?php include '../include/footer.php'; ?>
+<?php include '../../include/footer.php'; ?>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://use.fontawesome.com/ee309940e2.js"></script>
@@ -45,5 +45,5 @@ if (isset($_SESSION['user_session']) != "") {
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="../js/validation.min.js"></script>
-<script type="text/javascript" src="../js/script.js"></script>
+<script type="text/javascript" src="../../js/validation.min.js"></script>
+<script type="text/javascript" src="../../js/script.js"></script>

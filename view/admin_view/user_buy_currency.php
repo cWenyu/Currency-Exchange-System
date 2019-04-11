@@ -1,8 +1,8 @@
 <?php include './include/header.php'; ?>
 <main>
-    <h2>Register</h2>
-    <form action="index.php" method="post" id="buy_product_form">
-        <input type="hidden" name="action" value="buy_product">
+    <h2>Buy Currency</h2>
+    <form action="index.php" method="post" id="buy_currency_form">
+        <input type="hidden" name="action" value="buy_currency">
 
         <!--input-->
         <label>Register Number:</label>
@@ -13,11 +13,11 @@
         <input type="password" name="registerPassword" pattern="^[0-9]{5}$" required autofocus>
         <br>
 
-        <label>Products:</label>
-        <select name="productCode">
-            <?php foreach ($products as $product) : ?>
-                <option value="<?php echo $product['product_code']; ?>">
-                    <?php echo $product['product_name'];?>
+        <label>Currencies:</label>
+        <select name="currencyCode">
+            <?php foreach ($currencies as $currency) : ?>
+                <option value="<?php echo $curency['currency_code']; ?>">
+                    <?php echo $currency['currency_name'];?>
                 </option>
             <?php endforeach; ?>
         </select>
@@ -32,6 +32,6 @@
         <input type="submit" value="Submit">
         <br>
     </form>
-    <p><a href="index.php?action=list_products">List Products</a></p>
+    <p><a href="index.php?action=list_currencies">List Currencies</a></p>
 </main>
 <?php include './include/footer.php'; ?>

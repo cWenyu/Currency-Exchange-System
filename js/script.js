@@ -47,8 +47,8 @@ $('document').ready(function ()
             {
                 if (response == "ok") {
 
-                    $("#btn-login").html('<img src="../images/btn-ajax-loader.gif" /> &nbsp; Signing In ...');
-                    setTimeout(' window.location.href = "home.php"; ', 4000);
+                    $("#btn-login").html('<img src="../../images/btn-ajax-loader.gif" /> &nbsp; Signing In ...');
+                    setTimeout(' window.location.href = "user_currency_list.php"; ', 4000);
                 } else {
 
                     $("#error").fadeIn(1000, function () {

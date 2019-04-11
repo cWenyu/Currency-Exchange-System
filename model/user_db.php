@@ -23,7 +23,12 @@ function delete_register($registerNumber, $registerPassword) {
     $statement = $db->prepare($query);
     $statement->bindValue(':registerNumber', $registerNumber);
     $statement->bindValue(':registerPassword', $registerPassword);
-    $statement->execute();
+    $result = $statement->execute();
+    if ($result === false) {
+        echo 'false';
+    } else {
+        echo 'true';
+    }
     $statement->closeCursor();
 }
 
@@ -59,23 +64,40 @@ function get_card_holder($registerNumber, $registerPassword) {
     return $userNameA;
 }
 
-function buy_product($registerNumber, $cardHolder, $productCode, $productName, $quantity) {
+function get_quantity($registerNumber, $currencyCode) {
     global $db;
-    $query = 'INSERT INTO users_production
-                 (register_number,card_holder,product_code,product_name,quantity)
-              VALUES
-                 (:registerNumber,:cardHolder,:productCode,:productName,:quantity)';
+    $query = 'SELECT quantity FROM users_currency
+              WHERE register_number = :registerNumber
+              and currency_code = :currencyCode';
     $statement = $db->prepare($query);
     $statement->bindValue(':registerNumber', $registerNumber);
-    $statement->bindValue(':cardHolder', $cardHolder);
-    $statement->bindValue(':productCode', $productCode);
-    $statement->bindValue(':productName', $productName);
-    $statement->bindValue(':quantity', $quantity);
+    $statement->bindValue(':currencyCode', $currencyCode);
+    $statement->execute();
+    $quantity = $statement->fetch()[0];
+    $statement->closeCursor();
+    return $quantity;
+}
+
+function buy_currency($registerNumber, $cardHolder, $currencyCode, $currencyName, $quantity) {
+    global $db;
+    $quantityOriginal = get_quantity($registerNumber, $currencyCode);
+    $quantityCurrent = $quantity + $quantityOriginal;
+
+    $query = 'UPDATE users_currency
+              SET quantity = :quantityCurrent
+              WHERE register_number = :registerNumber
+              AND currency_code = :currencyCode';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':registerNumber', $registerNumber);
+    // $statement->bindValue(':cardHolder', $cardHolder);
+    $statement->bindValue(':currencyCode', $currencyCode);
+    //$statement->bindValue(':currencyName', $currencyName);
+    $statement->bindValue(':quantityCurrent', $quantityCurrent);
     $statement->execute();
     $statement->closeCursor();
 }
 
-function buy_product_change_balance($registerNumber, $cost) {
+function buy_currency_change_balance($registerNumber, $cost) {
     global $db;
     $query = 'UPDATE users_accounts
               SET balance = (balance - :cost)
@@ -88,9 +110,9 @@ function buy_product_change_balance($registerNumber, $cost) {
     $statement->closeCursor();
 }
 
-function user_production($registerNumber) {
+function user_currency($registerNumber) {
     global $db;
-    $query = 'SELECT * FROM users_production
+    $query = 'SELECT * FROM users_currency
               WHERE register_number = :registerNumber';
     $statement = $db->prepare($query);
     $statement->bindValue(':registerNumber', $registerNumber);

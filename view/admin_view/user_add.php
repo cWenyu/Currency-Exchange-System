@@ -14,7 +14,7 @@
         <br>
 
         <label>Register Password:</label>
-        <input type="password" name="registerPassword" pattern="^[0-9]{5}$" required autofocus>
+        <input type="password" name="registerPassword" pattern="^([a-zA-Z0-9!%^&*_@#~]){8,16}$" required autofocus>
         <br>
 
         <label>Deposit:</label>
@@ -26,6 +26,6 @@
         <input type="submit" value="Register">
         <br>
     </form>
-    <p><a href="index.php?action=list_products">List Products</a></p>
+    <p><a href="index.php?action=list_currencies">List Currencies</a></p>
 </main>
 <?php include './include/footer.php'; ?>
