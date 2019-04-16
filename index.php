@@ -78,23 +78,10 @@ else if ($action == 'add_currency_form') {
     $currencyName = filter_input(INPUT_POST, 'currencyName');
     $currencyDescription = filter_input(INPUT_POST, 'currencyDescription');
     $currencyPrice = filter_input(INPUT_POST, 'currencyPrice', FILTER_VALIDATE_FLOAT);
-    if ($currencyName == NULL) {
-        $error = "Currency name is null.";
-        include('errors/error.php');
-    } else if ($currencyDescription == null) {
-        $error = "Currency description is null.";
-        include('errors/error.php');
-    } else if ($currencyPrice == NULL) {
-        $error = "Currency price is null.";
-        include('errors/error.php');
-    } else if ($currencyPrice == FALSE) {
-        $error = "Invalid price.";
-        include('errors/error.php');
-    } else {
-        add_currency($currencyName, $currencyDescription, $currencyPrice);
-        header("Location: index.php");
-    }
+    add_currency($currencyName, $currencyDescription, $currencyPrice);
+    header("Location: index.php");
 }
+
 //new register 
 else if ($action == "register_new_form") {
     include ("view/user_view/user_add.php");
@@ -103,18 +90,9 @@ else if ($action == "register_new_form") {
     $cardHolder = filter_input(INPUT_POST, 'cardHolder');
     $registerPassword = filter_input(INPUT_POST, 'registerPassword');
     $balance = filter_input(INPUT_POST, 'balance', FILTER_VALIDATE_FLOAT);
-    if ($cardNumber == NULL) {
-        $error = "card number is null.";
-        include('errors/error.php');
-    } else if ($cardHolder == null) {
-        $error = "card holder is null";
-        include('errors/error.php');
-    } else if ($registerPassword == null) {
-        $error = "register password is requested";
-        include('errors/error.php');
-    } else if ($balance == FALSE) {
-        $error = "Invalid balance.";
-        include('errors/error.php');
+    if (check_card_number($cardNumber) === false) {
+        $message = "card number has aleardy exist, please check again";
+        include('include/messages.php');
     } else {
         $new_pw = sha1($registerPassword);
         new_register_user($new_pw, $cardNumber, $cardHolder, $balance);
@@ -131,25 +109,13 @@ else if ($action == "user_cancellation_form") {
 } else if ($action == "account_cancellation") {
     $registerNumber = filter_input(INPUT_POST, 'registerNumber');
     $registerPassword = filter_input(INPUT_POST, 'registerPassword');
-    if ($registerNumber == NULL) {
-        $error = "Register Number can not be null.";
-        include('errors/error.php');
-    } else if ($registerPassword == NULL) {
-        $error = "Please enter your register password again.";
-        include('errors/error.php');
+    if (check_register($registerNumber, $registerPassword) == null) {
+        $message = "Cancel account failed, please check your register number and password";
+        include('include/messages.php');
     } else {
-        if (delete_register($registerNumber, $registerPassword) == 0) {
-            $message = "Your account has been cancelled ";
-        }
-//        else{
-//             $message = "Cancel account failed, please contact with bank stuff";
-//        }
-
+        delete_register($registerNumber);
+        $message = "Your account has been cancelled ";
         include('include/messages.php');
     }
-}
-//login
-else if($action == "login"){
-    include ("./view/index_view/login_1.php");
 }
 ?>
