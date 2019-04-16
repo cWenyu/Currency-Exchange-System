@@ -26,28 +26,38 @@ function check_card_number($cardNumber) {
     $statement->closeCursor();
     if ($result == NULL) {
         return true;
-        echo 'true';
     } else {
         return false;
-        echo 'false';
+    }
+}
+
+function check_empty_register_number($registerNumber) {
+    global $db;
+    $query = 'SELECT register_number FROM users_accounts
+              WHERE register_number = :registerNumber';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':registerNumber', $registerNumber);
+    $statement->execute();
+    $result = $statement->fetch()[0];
+    $statement->closeCursor();
+    if ($result == NULL) {
+        return TRUE;
+    } else {
+        return FALSE;
     }
 }
 
 function check_register($registerNumber, $registerPassword) {
     global $db;
-    $query = 'SELECT card_holder FROM users_accounts
-              WHERE register_number = :registerNumber
-              AND register_password = :registerPassword';
-    $statement = $db->prepare($query);
-    $statement->bindValue(':registerNumber', $registerNumber);
-    $statement->bindValue(':registerPassword', $registerPassword);
-    $statement->execute();
-    $result = $statement->fetch()[0];
-    $statement->closeCursor();
-    if ($result == NULL) {
-        return "null";
+    $password = sha1($registerPassword);
+    $stmt = $db->prepare("SELECT * FROM users_accounts WHERE register_number=:register_number");
+    $stmt->execute(array(":register_number" => $registerNumber));
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $count = $stmt->rowCount();
+    if ($row['register_password'] == $password) {
+        return TRUE;
     } else {
-        return "not null";
+        return FALSE;
     }
 }
 
@@ -170,6 +180,18 @@ function user_currency($registerNumber) {
     $userProducrs = $statement->fetchAll();
     $statement->closeCursor();
     return $userProducrs;
+}
+
+function cash_deposit($registerNumber, $deposit) {
+    global $db;
+    $query = 'UPDATE users_accounts
+              SET balance =(balance + :deposit)
+              WHERE register_number = :registerNumber';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':deposit', $deposit);
+    $statement->bindValue(':registerNumber', $registerNumber);
+    $statement->execute();
+    $statement->closeCursor();
 }
 
 ?>
