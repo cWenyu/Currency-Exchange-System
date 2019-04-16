@@ -25,15 +25,15 @@ else if ($action == "user_cancellation_form") {
 } else if ($action == "account_cancellation") {
     $registerNumber = filter_input(INPUT_POST, 'registerNumber');
     $registerPassword = filter_input(INPUT_POST, 'registerPassword');
-    if ($registerNumber == NULL) {
-        $error = "Register Number can not be null.";
-        include('errors/error.php');
-    } else if ($registerPassword == NULL) {
-        $error = "Please enter your register password again.";
-        include('errors/error.php');
-    } else {
-        delete_register($registerNumber, $registerPassword);
+    if (check_register($registerNumber, $registerPassword) === true) {
+        delete_register($registerNumber);
         $message = "Your account has been cancelled ";
+        include('include/messages.php');
+    } else if (check_empty_register_number($registerNumber) === TRUE) {
+        $message = "Please check your register number";
+        include('include/messages.php');
+    } else {
+        $message = "Please check your password";
         include('include/messages.php');
     }
 }
@@ -44,7 +44,7 @@ else if ($action == "user_buy_currency_form") {
 } else if ($action == "buy_currency") {
     $registerNumber = $_SESSION['user_session'];
     $registerPassword = $_SESSION['user_password'];
-    $cardHolder = get_card_holder($registerNumber,$registerPassword);
+    $cardHolder = get_card_holder($registerNumber, $registerPassword);
     $currencyCode = filter_input(INPUT_POST, 'currencyCode');
     $currencyName = get_currency_name($currencyCode);
     $quantity = filter_input(INPUT_POST, 'quantity');
@@ -59,5 +59,15 @@ else if ($action == "user_buy_currency_form") {
         $userCurrencies = user_currency($registerNumber);
         header("Location: view/user_view/user_currency_list.php");
     }
+}
+
+//deposit
+else if ($action == "user_cash_deposit_form") {
+    include ("view/user_view/user_deposit.php");
+} else if ($action == "cash_deposit") {
+    $registerNumber = $_SESSION['user_session'];
+    $deposit = filter_input(INPUT_POST, 'deposit');
+    cash_deposit($registerNumber, $deposit);
+    header("Location: view/user_view/user_currency_list.php");
 }
 ?>
