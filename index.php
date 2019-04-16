@@ -109,13 +109,18 @@ else if ($action == "user_cancellation_form") {
 } else if ($action == "account_cancellation") {
     $registerNumber = filter_input(INPUT_POST, 'registerNumber');
     $registerPassword = filter_input(INPUT_POST, 'registerPassword');
-    if (check_register($registerNumber, $registerPassword) == null) {
-        $message = "Cancel account failed, please check your register number and password";
-        include('include/messages.php');
-    } else {
+    if (check_register($registerNumber, $registerPassword) === true) {
         delete_register($registerNumber);
         $message = "Your account has been cancelled ";
         include('include/messages.php');
+    } else if (check_empty_register_number($registerNumber) === TRUE) {
+        $message = "Please check your register number";
+        include('include/messages.php');
+    } else {
+        $message = "Please check your password";
+        include('include/messages.php');
     }
 }
+
+
 ?>
