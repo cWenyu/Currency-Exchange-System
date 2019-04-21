@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 require('model/database.php');
 require('model/currency_db.php');
@@ -14,9 +13,9 @@ if ($action == NULL) {
     }
 }
 //list financial products
-if ($action == 'list_user_currencies') {
+if ($action == 'list_user_currencies' || $action == "user_account") {
     $currencies = get_currencies();
-    include('./view/user_view/user_currency_list.php');
+    include('view/user_view/user_currency_list.php');
 }
 
 //user account cancellation
@@ -57,7 +56,7 @@ else if ($action == "user_buy_currency_form") {
         buy_currency($registerNumber, $cardHolder, $currencyCode, $currencyName, $quantity);
         buy_currency_change_balance($registerNumber, $cost);
         $userCurrencies = user_currency($registerNumber);
-        header("Location: view/user_view/user_currency_list.php");
+        include 'view/user_view/user_currency_list.php';
     }
 }
 
@@ -68,6 +67,8 @@ else if ($action == "user_cash_deposit_form") {
     $registerNumber = $_SESSION['user_session'];
     $deposit = filter_input(INPUT_POST, 'deposit');
     cash_deposit($registerNumber, $deposit);
-    header("Location: view/user_view/user_currency_list.php");
+    include 'view/user_view/user_currency_list.php';
+} else if ($action == "user_login") {
+    include ("view/user_view/userLogIn.php");
 }
 ?>

@@ -1,5 +1,5 @@
-<?php include './include/header.php'; ?>
-<main>
+<?php include 'include/header.php'; ?>
+<body>
     <h2>Cash Deposit</h2>
     <form action="user_controller.php" method="post" id="cash_deposit_form">
         <input type="hidden" name="action" value="cash_deposit">
@@ -13,6 +13,6 @@
         <input type="submit" value="Submit">
         <br>
     </form>
-    <p><a href="view/user_view/user_currency_list.php">List Currencies</a></p>
-</main>
-<?php include './include/footer.php'; ?>
+    <p><a href="user_controller.php?action=user_account">List Currencies</a></p>
+</body>
+<?php include 'include/footer.php'; ?>
