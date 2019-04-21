@@ -1,49 +1,94 @@
 <?php
+$title = 'Login';
+include 'include/header.php';
+
 session_start();
 if (isset($_SESSION['user_session']) != "") {
-    header("Location: user_currency_list.php");
+    header("location:user_controller.php?action=user_account");
 }
 ?>
-<?php include '../../include/header.php'; ?>
-<main>
-    <h2>User Login</h2> 
 
-    <form method="post" id="login-form">
+<body>
+    <div id="wrapper" class="home-page">
+        <!-- start header -->
+        <header>
+            <div class="navbar navbar-default navbar-static-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.php"><img src="img/logo_1.png" alt="logo"/></a>
+                    </div>
+                    <div class="navbar-collapse collapse ">
+                        <ul class="nav navbar-nav">
+                            <li><a href="index.php">Home</a></li> 
+                            <li class="active"><a href="?action=user_login">Login</a></li>
+                            <li><a href="?action=register_new_form">Register</a></li>
+                            <li><a href="?action=user_cancellation_form">Account Cancellation</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- end header -->
+        <section id="inner-headline">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="pageTitle">Login</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
-        <div id="error">
-            <!-- error will be shown here ! -->
+    <div class="login">
+        <div class="container">
+            <h2>Login</h2>
+            <div class="col-md-6 log">			 
+                <p>Welcome, please enter the folling to continue.</p>
+                <p>If you have previously Login with us, <span>click here</span></p>
+                <form method="post" id="login-form">
+                    <div id="error">
+                        <!-- error will be shown here ! -->
+                    </div>
+
+                    <h5>Register Number:</h5>
+
+                    <div>
+                        <input placeholder="Register Number" name="register_number" id="register_number" pattern="[0-9]*$"/>
+                        <span id="check-e"></span>
+                    </div>
+
+                    <h5>Password:</h5>
+                    <div>
+                        <input type="password" placeholder="Register Password" name="password" id="register_password" pattern="^([a-zA-Z0-9!%^&*_@#~]){8,16}$" required autofocus />
+                    </div>
+                    <br/>
+                    <div>
+                        <button type="submit" name="btn-login" id="btn-login">
+                            <i aria-hidden="true"></i>
+                            Sign In
+                        </button> 
+                    </div>
+
+                </form>				 
+            </div>
+            <!--                <a href="#">Forgot Password ?</a>-->
+            <div class="col-md-6 login-right">
+                <h3>NEW REGISTRATION</h3>
+                <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
+                <a class="user_buttons" href="?action=register_new_form">Create an Account</a>
+            </div>
+
         </div>
+        <div class="clearfix"></div>		 
+    </div>
+</div>
+<?php include 'include/footer.php'; ?>
+</body>
 
-        <div>
-            <input placeholder="Register Number" name="register_number" id="register_number" pattern="[0-9]*$"/>
-            <span id="check-e"></span>
-        </div>
 
-        <div>
-            <input type="password" placeholder="Register Password" name="password" id="register_password" pattern="^([a-zA-Z0-9!%^&*_@#~]){8,16}$" required autofocus />
-        </div>
-
-        <hr />
-
-        <div>
-            <button type="submit" name="btn-login" id="btn-login">
-                <i aria-hidden="true"></i> &nbsp;
-                    Sign In
-            </button> 
-        </div>
-
-    </form>
-    <p>
-        <a href="../../index.php?action=list_currencies">Home Page</a>
-    </p>
-</main>
-<?php include '../../include/footer.php'; ?>
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://use.fontawesome.com/ee309940e2.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="../../js/validation.min.js"></script>
-<script type="text/javascript" src="../../js/script.js"></script>
