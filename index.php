@@ -91,7 +91,7 @@ else if ($action == "register_new_form") {
     $registerPassword = filter_input(INPUT_POST, 'registerPassword');
     $balance = filter_input(INPUT_POST, 'balance', FILTER_VALIDATE_FLOAT);
     if (check_card_number($cardNumber) === false) {
-        $message = "card number has aleardy exist, please check again";
+        $message = "Card number has aleardy exist, please check again.";
         include('include/messages.php');
     } else {
         $new_pw = sha1($registerPassword);
@@ -122,5 +122,9 @@ else if ($action == "user_cancellation_form") {
     }
 }
 
+//user login
+else if($action == "user_login"){
+    include('view/user_view/userLogin.php');
+}
 
 ?>
