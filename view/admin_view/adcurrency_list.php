@@ -1,6 +1,10 @@
 <?php
 $title = 'Home';
 include 'include/header.php';
+
+$stmt = $db->prepare("SELECT admin_name FROM admin_accounts WHERE admin_id=:admin_id");
+$stmt->execute(array(":admin_id" => $_SESSION['admin_session']));
+$adminName= $stmt->fetch()[0];
 ?>
 <body>
     <div id="wrapper" class="home-page">
@@ -18,16 +22,9 @@ include 'include/header.php';
                     </div>
                     <div class="navbar-collapse collapse ">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="index.php">Home</a></li> 
-                            <li class="dropdown">
-                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">Login<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="?action=user_login">User Login</a></li>
-                                    <li><a href="?action=manager_login">Manager Login</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="?action=register_new_form">Register</a></li>
-                            <li><a href="?action=user_cancellation_form">Account Cancellation</a></li>
+                            <li class="active"><a href="admin_controller.php?action=list_currencies">Home</a></li> 
+                            <li><a href="admin_controller.php?action=manager_login">Administration Login</a></li>
+                            <li><a href="view/admin_view/admin_logout.php">Administration Logout</a></li>
                         </ul>
                     </div>
                 </div>
@@ -59,11 +56,11 @@ include 'include/header.php';
         </section>  
 
 
-        <section class="jumbobox">
+        <section class="content">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div><h1>Financial Currencies List</h1></div>
+                        <h1>Hi, <?php echo $adminName?></h1>
                         <div>
                             <table class="table table-striped">
                                 <thead class="thead-dark">
@@ -71,6 +68,9 @@ include 'include/header.php';
                                         <th>Currency Name</th>
                                         <th>Description</th>
                                         <th>Price</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                        <th>Add</th>
                                     </tr>  
                                 </thead>
 
@@ -80,10 +80,29 @@ include 'include/header.php';
                                             <th><?php echo $currency['currency_name']; ?></th>    
                                             <td><?php echo $currency['currency_description']; ?></td>
                                             <td><?php echo $currency['currency_price']; ?></td>   
-
+                                            <td>
+                                                <form action="admin_controller.php" method="post">
+                                                    <input type="hidden" name="action" value="edit_currency">
+                                                    <input type="hidden" name="currencyCode" value="<?php echo $currency['currency_code']; ?>">
+                                                    <input type="submit" value="Edit">
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form action="admin_controller.php" method="post">
+                                                    <input type="hidden" name="action" value="delete_currency">
+                                                    <input type="hidden" name="currencyCode" value="<?php echo $currency['currency_code']; ?>">
+                                                    <input type="submit" value="Delete">
+                                                </form>
+                                            </td>
+                                            
+                                            <td>
+                                                <form method="get">
+                                                    <input type="hidden" name="action" value="add_currency_form">
+                                                    <input type="submit" value="Add">
+                                                </form>
+                                            </td>
                                         </tr>
                                     <?php endforeach; ?> 
-
                                 </tbody>
                             </table> 
                         </div>
