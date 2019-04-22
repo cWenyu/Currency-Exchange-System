@@ -19,7 +19,13 @@ include './include/header.php';
                     <div class="navbar-collapse collapse ">
                         <ul class="nav navbar-nav">
                             <li><a href="index.php">Home</a></li> 
-                            <li><a href="?action=user_login">Login</a></li>
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">Login<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="?action=user_login">User Login</a></li>
+                                    <li><a href="?action=admin_login">Administration Login</a></li>
+                                </ul>
+                            </li>
                             <li><a href="?action=register_new_form">Register</a></li>
                             <li><a href="?action=user_cancellation_form">Account Cancellation</a></li>
                         </ul>
