@@ -1,5 +1,5 @@
 <?php
-$title = 'Login';
+$title = 'User Login';
 include 'include/header.php';
 
 session_start();
@@ -38,7 +38,7 @@ if (isset($_SESSION['user_session']) != "") {
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h2 class="pageTitle">Login</h2>
+                        <h2 class="pageTitle">User Login</h2>
                     </div>
                 </div>
             </div>

@@ -23,7 +23,7 @@ include 'include/header.php';
                                 <a href="#" data-toggle="dropdown" class="dropdown-toggle">Login<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="?action=user_login">User Login</a></li>
-                                    <li><a href="?action=manager_login">Manager Login</a></li>
+                                    <li><a href="?action=admin_login">Administration Login</a></li>
                                 </ul>
                             </li>
                             <li><a href="?action=register_new_form">Register</a></li>

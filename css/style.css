@@ -1038,7 +1038,7 @@ blockquote cite a:visited 				{ color:#555; }
     border-radius: 5px;
     border: none;
     padding: 8px 15px;
-    width: 5em;
+    width: 8em;
     height: 40px;
     font-size: 1.2em;
     font-weight: 400;
@@ -1864,8 +1864,9 @@ header .nav .caret {
     padding: 0;
     margin-top: 0em;
 }
+
 .log form button[type="submit"] {
-    width: 5em;
+    width: 8em;
     padding: 8px;
     font-size: 1.2em;
     font-weight: 400;
@@ -1892,6 +1893,7 @@ header .nav .caret {
 }
 
 .user_buttons{
+    
     font-size: 1em;
     padding: 0.7em 1.2em;
     border: 1px solid #002a54;

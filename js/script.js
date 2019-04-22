@@ -60,4 +60,60 @@ $('document').ready(function ()
         return false;
     }
     /* login submit */
+
+    /* admin validation */
+    $("#ADlogin-form").validate({
+        rules:
+                {
+                    password: {
+                        required: true,
+                    },
+                    ID: {
+                        required: true,
+                    },
+                },
+        messages:
+                {
+                    password: {
+                        required: "please enter your password"
+                    },
+                    ID: "please enter your ID",
+                },
+        submitHandler: submitADForm
+    });
+    /* validation */
+
+    /* login submit */
+    function submitADForm()
+    {
+        var data = $("#ADlogin-form").serialize();
+
+        $.ajax({
+
+            type: 'POST',
+            url: 'model/login_process.php',
+            data: data,
+            beforeSend: function ()
+            {
+                $("#ADerror").fadeOut();
+                $("#btn-ADlogin").html('sending ...');
+            },
+            success: function (response)
+            {
+                if (response == "ok") {
+
+                    $("#btn-ADlogin").html('<img src="./images/btn-ajax-loader.gif"/>Signing In ...');
+                    setTimeout(' window.location.href = "admin_controller.php?action=list_currencies"; ', 2000);
+                } else {
+
+                    $("#ADerror").fadeIn(1000, function () {
+                        $("#ADerror").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; ' + response + ' !</div>');
+                        $("#btn-ADlogin").html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; Sign In');
+                    });
+                }
+            }
+        });
+        return false;
+    }
+    /* login submit */
 });
