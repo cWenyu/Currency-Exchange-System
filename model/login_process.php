@@ -26,4 +26,28 @@ if (isset($_POST['btn-login'])) {
         echo $e->getMessage();
     }
 }
+
+if (isset($_POST['btn-ADlogin'])) {
+    $admin_id = trim($_POST['admin_id']);
+    $admin_password = trim($_POST['admin_password']);
+
+    $password = sha1($admin_password);
+
+    try {
+
+        $stmt = $db->prepare("SELECT * FROM admin_accounts WHERE admin_id =:admin_id");
+        $stmt->execute(array(":admin_id" => $admin_id));
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $count = $stmt->rowCount();
+
+        if ($row['admin_password'] == $password) {
+            echo "ok"; // log in
+            $_SESSION['admin_session'] = $row['admin_id'];
+        } else {
+            echo "ID or password does not exist."; // wrong details 
+        }
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+}
 ?>
