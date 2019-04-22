@@ -25,7 +25,7 @@ if (isset($_SESSION['user_session']) != "") {
                     <div class="navbar-collapse collapse ">
                         <ul class="nav navbar-nav">
                             <li><a href="index.php">Home</a></li> 
-                            <li class="active"><a href="?action=user_login">Login</a></li>
+                            <li class="active"><a href="?action=user_login">User Login</a></li>
                             <li><a href="?action=register_new_form">Register</a></li>
                             <li><a href="?action=user_cancellation_form">Account Cancellation</a></li>
                         </ul>

@@ -71,4 +71,8 @@ else if ($action == "user_cash_deposit_form") {
 } else if ($action == "user_login") {
     include ("view/user_view/userLogIn.php");
 }
+
+else if($action="register_new_form"){
+    include 'view/user_view/user_add.php';
+}
 ?>

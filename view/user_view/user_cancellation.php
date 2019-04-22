@@ -1,7 +1,6 @@
 <?php
 $title = "Cancellation";
 include './include/header.php';
-session_start();
 ?>
 <body>
     <div id="wrapper" class="home-page">

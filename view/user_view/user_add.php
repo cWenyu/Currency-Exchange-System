@@ -1,6 +1,7 @@
 <?php
 $title = "Register";
 include './include/header.php';
+session_start();
 ?>
 
 <body>
@@ -51,35 +52,32 @@ include './include/header.php';
                     <h5>Card Number:</h5>
 
                     <div>
-                        <input type="input" name="cardNumber" placeholder="Card Number" pattern="^[0-9]{16}$" required autofocus>
+                        <input type="input" name="cardNumber" id="cardNumber" placeholder="Card Number" pattern="^[0-9]{16}$" required autofocus>
                     </div>
 
                     <h5>Card holder:</h5>
                     <div>
-                        <input type="input" name="cardHolder"  placeholder="Card Holder" pattern="^[ A-Za-z]*$" required autofocus>
+                        <input type="input" name="cardHolder" id="cardHolder" placeholder="Card Holder" pattern="^[ A-Za-z]*$" required autofocus>
                     </div>  
                 </div>
 
                 <div class="col-md-6">
                     <h5>Register Password:</h5>
                     <div>
-                        <input type="password" name="registerPassword" pattern="^([a-zA-Z0-9!%^&*_@#~]){8,16}$" required autofocus>
+                        <input type="password" name="registerPassword" id="registerPassword" pattern="^([a-zA-Z0-9!%^&*_@#~]){8,16}$" required autofocus>
                     </div>
 
                     <h5>Deposit:</h5>
                     <div>
-                        <input type="input" name="balance" pattern="^([0-9]*)+(.[0-9]{1,2})?$" placeholder="Deposit" required autofocus>
+                        <input type="input" name="balance" id="balance" pattern="^([0-9]*)+(.[0-9]{1,2})?$" placeholder="Deposit">
                     </div> 
                     <br>
-                    <button type="submit" class="btn">
+                    <button type="submit" class="btn" id="btn-regist">
                         Register
                     </button>  
                 </div>
             </form> 				 
         </div>		 
     </div>
-
-
-    <p><a href="index.php?action=list_currencies">List Currencies</a></p>
+    <?php include './include/footer.php'; ?>   
 </body>
-<?php include './include/footer.php'; ?>

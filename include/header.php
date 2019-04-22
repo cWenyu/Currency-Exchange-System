@@ -4,16 +4,17 @@
     <head>
         <meta charset="utf-8">
         <title><?php echo $title; ?></title>
-        
+
         <link rel = "shortcut icon" href = "./images/favicon.ico">
 
         <!--css -->
-        <link href = "./css/bootstrap.min.css" rel = "stylesheet" />
-        <link href = "./simple-line-icons/css/simple-line-icons.css" rel = "stylesheet" >
-        <link href = "./css/fancybox/jquery.fancybox.css" rel = "stylesheet">
-        <link href = "./css/flexslider.css" rel = "stylesheet" />
-        <link href = "./js/owl-carousel/owl.carousel.css" rel = "stylesheet">
-        <link href = "./css/style.css" rel = "stylesheet" />
+        <link href="css/bootstrap.min.css" rel="stylesheet" />
+        <link href="simple-line-icons/css/simple-line-icons.css"rel="stylesheet" >
+        <link href="css/fancybox/jquery.fancybox.css" rel="stylesheet"> 
+        <link href="css/flexslider.css" rel="stylesheet" />
+        <link href="js/owl-carousel/owl.carousel.css" rel="stylesheet"> 
+        <link href="css/style.css" rel="stylesheet" />
+
         <script src="./js/jquery.js"></script>
         <script src="./js/jquery.easing.1.3.js"></script>
         <script src="./js/bootstrap.min.js"></script>

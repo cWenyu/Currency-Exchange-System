@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require_once '../../model/database.php';
+require_once 'database.php';
 if (isset($_POST['btn-login'])) {
     $register_number = trim($_POST['register_number']);
     $register_password = trim($_POST['password']);
