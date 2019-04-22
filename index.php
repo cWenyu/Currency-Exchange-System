@@ -58,12 +58,52 @@ else if ($action == "user_cancellation_form") {
 }
 
 //user login
-else if($action == "user_login"){
+else if ($action == "user_login") {
     include('view/user_view/userLogin.php');
-}
-
-else if($action == "admin_login"){
+} else if ($action == "admin_login") {
     include('view/admin_view/admin_login.php');
 }
 
+//forget password
+else if ($action == "reset_password_form") {
+    include('view/user_view/user_reset_password.php');
+} else if ($action == "reset_password") {
+    $cardNumber = filter_input(INPUT_POST, 'cardNumber');
+    $cardHolder = filter_input(INPUT_POST, 'cardHolder');
+    $registerNumber = filter_input(INPUT_POST, 'register_number');
+    $newPassword = filter_input(INPUT_POST, 'new_password');
+    if (check_empty_register_number($registerNumber) === true) {
+        $message = "Register number did not exist, please check again.";
+        include('include/messages.php');
+    } else if (check_card_number($cardNumber) === true) {
+        $message = "Card number did not exist, please check again.";
+        include('include/messages.php');
+    } else if (check_register($registerNumber, $newPassword) === true) {
+        $message = "Password can be same with last one.";
+        include('include/messages.php');
+    } else {
+        reset_password($registerNumber, $cardNumber, $cardHolder, $newPassword);
+        $message = "You have reseted your password.";
+        include('include/messages.php');
+    }
+}
+
+//forget register number
+else if ($action == "forget_registerNo_form") {
+    include('view/user_view/user_forget_registNo.php');
+} else if ($action == "retrive_registNo") {
+    $cardNumber = filter_input(INPUT_POST, 'cardNumber');
+    $cardHolder = filter_input(INPUT_POST, 'cardHolder');
+    if (check_card_number($cardNumber) === true) {
+        $message = "Card number did not exist, please check again.";
+        include('include/messages.php');
+    } else if ($registerNumber = get_register_number($cardNumber, $cardHolder) == NULL) {
+        $message = "Card holder is not matched, please check again.";
+        include('include/messages.php');
+    } else {
+        $registerNumber = get_register_number($cardNumber, $cardHolder);
+        $message = "Your register number is " . $registerNumber;
+        include('include/messages.php');
+    }
+}
 ?>

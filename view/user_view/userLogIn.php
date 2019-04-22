@@ -75,9 +75,10 @@ if (isset($_SESSION['user_session']) != "") {
                         </button> 
                     </div>
 
-                </form>				 
+                </form>	                            
+                <a href="?action=reset_password_form">Forgot Password ?</a>			 
             </div>
-            <!--                <a href="#">Forgot Password ?</a>-->
+
             <div class="col-md-6 login-right">
                 <h3>NEW REGISTRATION</h3>
                 <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>

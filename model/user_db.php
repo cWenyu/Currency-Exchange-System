@@ -194,4 +194,31 @@ function cash_deposit($registerNumber, $deposit) {
     $statement->closeCursor();
 }
 
+function reset_password($registerNumber, $cardNumber, $newPassword) {
+    global $db;
+    $query = 'UPDATE users_accounts
+              SET register_password = :newPassword
+              WHERE register_number = :registerNumber
+              AND card_number = :cardNumber';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':registerNumber', $registerNumber);
+    $statement->bindValue(':newPassword', $newPassword);
+    $statement->bindValue(':cardNumber', $cardNumber);
+    $statement->execute();
+    $statement->closeCursor();
+}
+
+function get_register_number($cardNumber, $cardHolder) {
+    global $db;
+    $query = 'SELECT register_number FROM users_accounts
+                 WHERE card_number = :cardNumber
+                 AND card_holder = :cardHolder';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':cardHolder', $cardHolder);
+    $statement->bindValue(':cardNumber', $cardNumber);
+    $statement->execute();
+    $registerNumber = $statement->fetch()[0];
+    $statement->closeCursor();
+    return $registerNumber;
+}
 ?>
