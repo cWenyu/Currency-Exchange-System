@@ -24,3 +24,9 @@ This application was designed with:
 * ###### html
 * ###### css
 * ###### php
+* ###### Javascript
+* ###### Bootstrap
+* ###### Ajax
+* ###### Jquery
+
+The <b>netBeans</b> IDE was used to build this application along with the <b>xampp</b> frameworks
