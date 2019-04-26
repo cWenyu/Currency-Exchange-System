@@ -17,6 +17,6 @@ Customers can:
 * Deposit Euro for purchasing other currencies
 * Account cancellation is also possible 
 
-##User
+![alttext](/READMEimages/userAccount.PNG)
 
-Users can login with register number and password to quick their balance.Users also can buy financial products on line and balance will be changed.
+
