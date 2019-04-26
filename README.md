@@ -1,8 +1,14 @@
 <h1 align="center">Currency Exchange System</h1>
+
+###Introduction
 Users can view and price the exchange rate of listed currencies, eight different currencies are available, Euro is the default currency of the exchange at present.
 
 ![alttext](/READMEimages/currencyExchange1.PNG)
-##Bank Administrator 
+##Administrators
+Administrators can:
+* Create Currencies
+* Update Currencies
+* Delete Currencies
 
 Bank manager can add new financial products, edit existed products, and delete product. 
 
