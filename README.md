@@ -1,5 +1,5 @@
 <h1 align="center">Currency Exchange System</h1>
-This is an application that users can check their balance and view financial products online.Administrator can manage products.
+Users can view and price the exchange rate of listed currencies, eight different currencies are available, Euro is the default currency of the exchange at present.
 
 ![alttext](/READMEimages/currencyExchange1.PNG)
 ##Bank Administrator 
