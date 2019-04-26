@@ -30,3 +30,6 @@ This application was designed with:
 * ###### Jquery
 
 The <b>netBeans</b> IDE was used to build this application along with the <b>xampp</b> frameworks
+
+### Feedback
+To give feedback please email us at robandwenyu@nomail.com
