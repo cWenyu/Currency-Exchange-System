@@ -9,8 +9,13 @@ Administrators can:
 * Create Currencies
 * Update Currencies
 * Delete Currencies
+* Edit Existing Currencies
 
-Bank manager can add new financial products, edit existed products, and delete product. 
+### Customers
+Customers can:
+* Buy Currencies
+* Deposit Euro for purchasing other currencies
+* Account cancellation is also possible 
 
 ##User
 
