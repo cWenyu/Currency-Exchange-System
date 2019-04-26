@@ -1,5 +1,4 @@
-#Bank System
-
+<h1 align="center">Currency Exchange System</h1>
 This is an application that users can check their balance and view financial products online.Administrator can manage products.
 
 ##Bank Administrator 
